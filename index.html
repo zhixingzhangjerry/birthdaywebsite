@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Birthday!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+        sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #ffe0f0, #f8f4ff 40%, #d7e8ff);
+      color: #333;
+      overflow: hidden;
+    }
+
+    .stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.7), transparent),
+        radial-gradient(2px 2px at 80% 70%, rgba(255,255,255,0.8), transparent),
+        radial-gradient(3px 3px at 50% 10%, rgba(255,255,255,0.9), transparent),
+        radial-gradient(2px 2px at 10% 80%, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 90% 20%, rgba(255,255,255,0.6), transparent);
+      opacity: 0.8;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      width: 92%;
+      padding: 32px 24px 28px;
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 24px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+      text-align: center;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .name {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: linear-gradient(120deg, #ff7aa2, #ffb347, #8f9bff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: #777;
+      margin-bottom: 20px;
+    }
+
+    .message {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #444;
+      margin: 0 auto 24px;
+      max-width: 540px;
+      text-align: left;
+    }
+
+    .message p + p {
+      margin-top: 10px;
+    }
+
+    .btn-row {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s;
+    }
+
+    .btn-main {
+      background: linear-gradient(135deg, #ff7aa2, #ffb347);
+      color: #fff;
+      box-shadow: 0 10px 25px rgba(255, 122, 162, 0.35);
+    }
+
+    .btn-main:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(255, 122, 162, 0.5);
+    }
+
+    .btn-secondary {
+      background: #f2f3ff;
+      color: #555;
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+      background: #e6e7ff;
+    }
+
+    .footer {
+      margin-top: 18px;
+      font-size: 0.85rem;
+      color: #999;
+    }
+
+    .heart {
+      color: #ff7aa2;
+      animation: beat 1s infinite;
+      display: inline-block;
+      transform-origin: center;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.1); }
+      50% { transform: scale(0.95); }
+      75% { transform: scale(1.08); }
+    }
+
+    /* 气球 */
+    .balloon {
+      position: fixed;
+      bottom: -120px;
+      width: 38px;
+      height: 52px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 20%, #fff, #ff9fb8);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+      animation: floatUp 10s linear infinite;
+      z-index: 0;
+    }
+    .balloon::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -40px;
+      width: 1.5px;
+      height: 40px;
+      background: rgba(0,0,0,0.15);
+      transform: translateX(-50%);
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translateY(-120vh) translateX(40px) rotate(6deg); opacity: 0; }
+    }
+
+    /* 打字效果 */
+    .typewriter {
+      display: inline-block;
+      border-right: 2px solid rgba(0,0,0,0.35);
+      white-space: nowrap;
+      overflow: hidden;
+      animation: caret 0.8s steps(1) infinite;
+      max-width: 100%;
+    }
+
+    @keyframes caret {
+      0%, 49% { border-color: rgba(0,0,0,0.35); }
+      50%, 100% { border-color: transparent; }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 22px 18px 20px;
+        border-radius: 18px;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      .name {
+        font-size: 1.4rem;
+      }
+      .message {
+        font-size: 0.98rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+
+  <!-- 气球元素（JS 会随机克隆多个） -->
+  <div class="balloon" id="balloon-template"></div>
+
+  <div class="container">
+    <h1>Happy Birthday</h1>
+    <!-- 这里改成你朋友的名字 -->
+    <div class="name">亲爱的 TA 的名字</div>
+
+    <div class="subtitle">
+      <span class="typewriter" id="typewriter"></span>
+    </div>
+
+    <div class="message">
+      <!-- 这段是主要祝福内容，按需要改 -->
+      <p>今天是你的专属纪念日，希望当你打开这个小小网页的时候，能感受到我偷偷准备了很久的惊喜。</p>
+      <p>谢谢你一直以来的陪伴与温暖。愿你在新的一岁里，保持好奇，保持热爱，生活里永远有好吃的、好玩的，还有很多很多让你开心的瞬间。</p>
+      <p>不管未来我们在世界的哪一个角落，我都会为你的每一次小小进步、每一个小小愿望默默喝彩。</p>
+      <p>生日快乐呀，希望所有你悄悄许下的愿望，都能慢慢实现。🎂</p>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-main" id="wish-btn">点我许个愿 ✨</button>
+      <button class="btn-secondary" id="confetti-btn">再来一点惊喜 🎉</button>
+    </div>
+
+    <div class="footer">
+      From <span class="heart">♥</span> 你自己的名字 &nbsp;|&nbsp; Made just for you
+    </div>
+  </div>
+
+  <script>
+    // 打字机效果
+    const text = "愿今天所有的星光与心愿，悄悄落在你身上。";
+    const typeElem = document.getElementById("typewriter");
+    let idx = 0;
+    function type() {
+      if (idx <= text.length) {
+        typeElem.textContent = text.slice(0, idx);
+        idx++;
+        setTimeout(type, 90);
+      }
+    }
+    type();
+
+    // 生成气球
+    function createBalloon() {
+      const tpl = document.getElementById("balloon-template");
+      const b = tpl.cloneNode(true);
+      b.removeAttribute("id");
+      const size = 32 + Math.random() * 18;
+      b.style.width = size + "px";
+      b.style.height = (size * 1.4) + "px";
+      b.style.left = Math.random() * 100 + "vw";
+      b.style.animationDuration = 10 + Math.random() * 6 + "s";
+      b.style.animationDelay = Math.random() * 4 + "s";
+      const colors = [
+        "radial-gradient(circle at 30% 20%, #fff, #ff9fb8)",
+        "radial-gradient(circle at 30% 20%, #fff, #ffc98b)",
+        "radial-gradient(circle at 30% 20%, #fff, #a4c6ff)",
+        "radial-gradient(circle at 30% 20%, #fff, #d6a4ff)"
+      ];
+      b.style.backgroundImage = colors[Math.floor(Math.random() * colors.length)];
+      document.body.appendChild(b);
+      setTimeout(() => b.remove(), 18000);
+    }
+
+    for (let i = 0; i < 10; i++) {
+      setTimeout(createBalloon, i * 800);
+    }
+    setInterval(createBalloon, 4000);
+
+    // 简单“愿望弹窗”
+    document.getElementById("wish-btn").addEventListener("click", () => {
+      alert("闭上眼睛，偷偷许一个愿望吧：）\n愿望说出来就不灵啦！");
+    });
+
+    // 简易彩带效果（用 emoji 简单替代）
+    document.getElementById("confetti-btn").addEventListener("click", () => {
+      const emojiList = ["🎉", "✨", "🎂", "🎈", "⭐"];
+      for (let i = 0; i < 18; i++) {
+        const span = document.createElement("span");
+        span.textContent = emojiList[Math.floor(Math.random() * emojiList.length)];
+        span.style.position = "fixed";
+        span.style.left = Math.random() * 100 + "vw";
+        span.style.top = "-10px";
+        span.style.fontSize = 20 + Math.random() * 18 + "px";
+        span.style.transition = "transform 1.5s ease-out, opacity 1.5s";
+        span.style.zIndex = 2;
+        document.body.appendChild(span);
+        requestAnimationFrame(() => {
+          span.style.transform =
+            "translateY(" + (window.innerHeight + 40) + "px) rotate(" + (Math.random() * 360) + "deg)";
+          span.style.opacity = "0";
+        });
+        setTimeout(() => span.remove(), 1700);
+      }
+    });
+  </script>
+</body>
+</html>
