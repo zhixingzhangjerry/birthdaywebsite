@@ -216,7 +216,7 @@
   <div class="container">
     <h1>Happy Birthday</h1>
     <!-- 这里改成你朋友的名字 -->
-    <div class="name">亲爱的 TA 的名字</div>
+    <div class="name">郑子健</div>
 
     <div class="subtitle">
       <span class="typewriter" id="typewriter"></span>
@@ -224,25 +224,18 @@
 
     <div class="message">
       <!-- 这段是主要祝福内容，按需要改 -->
-      <p>今天是你的专属纪念日，希望当你打开这个小小网页的时候，能感受到我偷偷准备了很久的惊喜。</p>
-      <p>谢谢你一直以来的陪伴与温暖。愿你在新的一岁里，保持好奇，保持热爱，生活里永远有好吃的、好玩的，还有很多很多让你开心的瞬间。</p>
-      <p>不管未来我们在世界的哪一个角落，我都会为你的每一次小小进步、每一个小小愿望默默喝彩。</p>
-      <p>生日快乐呀，希望所有你悄悄许下的愿望，都能慢慢实现。🎂</p>
+      <p>生日快乐，愿你在新的一岁里，保持好奇，保持热爱。愿你许下的愿望，最终都会实现。🎂</p>
     </div>
 
     <div class="btn-row">
-      <button class="btn-main" id="wish-btn">点我许个愿 ✨</button>
-      <button class="btn-secondary" id="confetti-btn">再来一点惊喜 🎉</button>
-    </div>
-
-    <div class="footer">
-      From <span class="heart">♥</span> 你自己的名字 &nbsp;|&nbsp; Made just for you
+      <button class="btn-main" id="wish-btn">许愿 ✨</button>
+      <button class="btn-secondary" id="confetti-btn">祝贺 🎉</button>
     </div>
   </div>
 
   <script>
     // 打字机效果
-    const text = "愿今天所有的星光与心愿，悄悄落在你身上。";
+    const text = "在你诞生的日子，北风为你呼啸，雪花为你飞舞。";
     const typeElem = document.getElementById("typewriter");
     let idx = 0;
     function type() {
@@ -283,7 +276,7 @@
 
     // 简单“愿望弹窗”
     document.getElementById("wish-btn").addEventListener("click", () => {
-      alert("闭上眼睛，偷偷许一个愿望吧：）\n愿望说出来就不灵啦！");
+      alert("    闭上眼睛，开始许愿\n记在心里，说出来就不灵了 ：）");
     });
 
     // 简易彩带效果（用 emoji 简单替代）
